@@ -1,6 +1,9 @@
 library(dplyr)
+
 rm(list = ls())
-dataDir <- "./data"
+
+#dataDir <- "./data"
+dataDir <- "."
 featFile <- paste(dataDir, "features.txt", sep ="/")
 actFile <- paste(dataDir, "activity_labels.txt", sep = "/")
 trainDir <- paste(dataDir, "train", sep = "/")
@@ -53,7 +56,8 @@ myData <-
     merge(actNames, by.x = "Activity", by.y = "ActId") %>%
     select(c(last_col(), 2, 3:last_col(1))) %>%
     rename(Activity = ActName) %>%
-    rename_with(~ gsub("()", "", .x, fixed = TRUE))
+    rename_with(~ gsub("()", "", .x, fixed = TRUE)) %>%
+    rename_with(~ gsub("-", ".", .x, fixed = TRUE))
 rm(df_all, actNames)
 
 # compute averages and create an independent dataset (Step_5)
@@ -71,3 +75,4 @@ str(newData)
 dim(newData)
 unique(newData$Activity)
 unique(newData$Subject)
+sum(is.na(newData))
