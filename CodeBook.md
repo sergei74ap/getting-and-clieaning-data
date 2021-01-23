@@ -55,7 +55,7 @@ grouped by the activity & subject fields, and the mean values were computed).
 
 ## The resulting dataset for the assignment
 The resulting dataset is a single text file named `result.txt`, which is 
-a table that can be loaded into a data frame using the following R command: 
+a table that can be loaded into a data frame using the following R command:<br> 
 `read.table(resultFile, header = TRUE)`
 
 Each row of the table contains one observation, and each column is a variable. 
